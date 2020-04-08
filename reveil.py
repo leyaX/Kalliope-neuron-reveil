@@ -1,4 +1,3 @@
-# Kalliope-neuron-reveil
 
 import time, string, sys, threading, os
 
