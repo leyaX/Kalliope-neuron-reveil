@@ -20,14 +20,17 @@ class Reveil (NeuronModule):
 #       self.say("Il est " + self.temps)
         
         """ 
-                Ordre: "Réveille-moi à 11 heures"
-                Kalliope renvoie 11h
-                je doit reformater la chaine pour avoir 11:00
-                Je verifie la longueur de la chaine "len()" et j'utilise "str.split('h')"
-                Ordre: "Réveille-moi à dix heures 30"
-                Kalliope renvoie 10h30
-                je doit reformater la chaine pour avoir 10:30
-                J'utilise "str.replace('h',':')"
+                - Ordre: "Réveille-moi à dix heures 30"
+                    Kalliope renvoie 10h30
+                    je doit reformater la chaine pour avoir 10:30
+                    J'utilise "str.replace('h',':')"
+                - Ordre: "Réveille-moi à 11 heures"
+                    Kalliope renvoie 11h
+                    je doit reformater la chaine pour avoir 11:00
+                    Je verifie la longueur de la chaine "len()" et j'utilise "str.split('h')"
+                - Ordre: "Réveille moi à neuf heures 50"
+                    Kalliope renvoie 9h50
+                    Je verifie la longueur de la chaine "len()" et je rajoute un "0" 
         """
 
         test_heure_reveil = len(self.heure_reveil)
