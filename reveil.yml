@@ -1,0 +1,36 @@
+---
+# ------------------------------------------------------             
+  - name: "reveil-test-ya"
+    signals:
+      - order:
+          text: "réveille-moi à {{mon_heure}}  "
+          stt-correction:
+            - input: "minuit"
+              output: "00:00"  
+            - input: "midi"
+              output: "12:00"  
+      - order: 
+          text: "debout {{mon_heure}}  "
+          stt-correction:
+            - input: "minuit"
+              output: "00:00"  
+            - input: "midi"
+              output: "12:00"  
+    neurons:
+      - reveil:
+          heure_reveil: "{{ mon_heure }}"
+      - signals:
+          notification: "skip_trigger"
+          payload:
+            status: "False"
+
+  - name: "reveil-stop"
+    signals:
+      - order: "Stoppe le réveil"
+    neurons:
+      - shell:
+          cmd: "killall mplayer"      
+      - signals:
+          notification: "skip_trigger"
+          payload:
+            status: "False"
