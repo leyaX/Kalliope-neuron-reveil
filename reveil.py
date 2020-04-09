@@ -31,23 +31,28 @@ class Reveil (NeuronModule):
         """
 
         test_heure_reveil = len(self.heure_reveil)
-#       print("Longeur de la chaine: " + str(test_heure_reveil))
+        print("Longeur de la chaine: " + str(test_heure_reveil))
+        print(self.heure_reveil)
         if test_heure_reveil == 3:
                 self.reveil = self.heure_reveil.split('h')
                 self.reveil= self.reveil[0] + ":00"
-#               print(self.reveil)
+        elif test_heure_reveil == 4:
+                self.reveil = self.heure_reveil.replace('h',':')
+                self.reveil= "0" + self.reveil
         else:
                 self.reveil = self.heure_reveil.replace('h',':')
-#               print(self.reveil)
+                print(self.reveil)
 
         self.say("Réveil programmé à " + self.reveil )
         test = True
         while(test == True):
                 heure_courante = time.strftime("%H:%M")
-#               print(heure_courante)
+                print(heure_courante)
+                print(self.reveil)
                 time.sleep(1)
                 if(self.reveil == heure_courante):
-#                       print("OK")
+                        print("OK")
 #                        os.system("/usr/bin/mplayer -slave -quiet http://direct.franceinter.fr/live/franceinter-midfi.mp3 &")
                         os.system("bash /home/pi/barbara/scripts_ya/franceInter.sh")  
                         test = False
+
