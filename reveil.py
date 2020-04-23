@@ -13,11 +13,10 @@ class Reveil (NeuronModule):
         super(Reveil, self).__init__(**kwargs)
         # get parameters form the neuron
         self.heure_reveil = kwargs.get('heure_reveil', None)
-
+        print(self.heure_reveil)  
         """Donne l'heure courante au format hh:mm """
         self.temps = time.strftime("%H:%M")
- 
-        if re.match(r'(..)h(..)',self.heure_reveil) or re.match(r'(..)h',self.heure_reveil) == None: 
+        if (re.match(r'(..)h(..)',self.heure_reveil)  or re.match(r'(.)h(..)',self.heure_reveil) or re.match(r'(..)h',self.heure_reveil)) == None: 
                 self.say("Ce n'est pas une heure valide!")
         else:
         	test_heure_reveil = len(self.heure_reveil)
