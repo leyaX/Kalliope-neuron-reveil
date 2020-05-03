@@ -1,5 +1,4 @@
 import time, string, sys, threading, os, re
-
 from kalliope.core.NeuronModule import NeuronModule, InvalidParameterException
 
 class Reveil (NeuronModule):
@@ -16,13 +15,17 @@ class Reveil (NeuronModule):
         print(self.heure_reveil)  
         """Donne l'heure courante au format hh:mm """
         self.temps = time.strftime("%H:%M")
-        if (re.match(r'(..)h(..)',self.heure_reveil)  or re.match(r'(.)h(..)',self.heure_reveil) or re.match(r'(..)h',self.heure_reveil)) == None: 
+        #if (re.match(r'(..)h(..)',self.heure_reveil) or re.match(r'(.)h(..)',self.heure_reveil) or re.match(r'(..)h',self.heure_reveil)) == None: 
+        if (re.match(r'(..)h',self.heure_reveil) or re.match(r'(.)h',self.heure_reveil)) == None: 
                 self.say("Ce n'est pas une heure valide!")
         else:
         	test_heure_reveil = len(self.heure_reveil)
 	        print("Longeur de la chaine: " + str(test_heure_reveil))
         	print(self.heure_reveil)
-        	if test_heure_reveil == 3:
+        	if test_heure_reveil == 2:
+        	        self.reveil = self.heure_reveil.split('h')
+        	        self.reveil= "0" + self.reveil[0] + ":00"
+        	elif test_heure_reveil == 3:
         	        self.reveil = self.heure_reveil.split('h')
         	        self.reveil= self.reveil[0] + ":00"
         	elif test_heure_reveil == 4:
@@ -42,7 +45,4 @@ class Reveil (NeuronModule):
         	                print("OK")
         	                os.system("bash /home/pi/barbara/scripts_ya/franceInter.sh")  
         	                test = False
-
-
-
 
